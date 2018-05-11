@@ -47,6 +47,12 @@ public class Constants {
     final public static Color REGEX_BOX_DESCRIPTION_COLOR = Color.WHITE;
 
 
+    // ** Description for the Input box **
+
+    // Text of the description.
+    final public static String INPUT_BOX_DESCRIPTION = "Enter the String to test the regex pattern on: ";
+
+
     // ** Warnings/errors Label for the regex text box **
 
     // Color.

@@ -1,3 +1,5 @@
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,6 +23,9 @@ public class MainGUI implements RegexFrontend {
     // The text box for entering regex.
     private TextField regexBox;
 
+    // The text box for entering the input to test the regex on.
+    private TextField inputBox;
+
     // Label that displays any error when user types in a regex.
     private Label warnings;
 
@@ -40,13 +45,23 @@ public class MainGUI implements RegexFrontend {
         this.background = new VBox();
         this.background.setStyle(Constants.BACKGROUND_STYLE);
 
-        // The regex box for user input.
+        // The regex box for user input to get the regex pattern.
         this.regexBox = new TextField();
         this.regexBox.setStyle(Constants.REGEX_BOX_STYLE);
         this.regexBox.setFont(Constants.REGEX_BOX_FONT);
         // Add listener for when user types something.
         this.regexBox.textProperty().addListener((observable, oldValue, newValue) -> {
             this.regexUpdated();
+        });
+
+        // The input box so that user can enter String to test regex on.
+        // Use same style as regex box.
+        this.inputBox = new TextField();
+        this.inputBox.setStyle(Constants.REGEX_BOX_STYLE);
+        this.inputBox.setFont(Constants.REGEX_BOX_FONT);
+        // Add listener for when user types something.
+        this.inputBox.textProperty().addListener((observable, oldValue, newValue) -> {
+            this.inputUpdated();
         });
 
         // The container for the area that contains the regex box.
@@ -66,7 +81,20 @@ public class MainGUI implements RegexFrontend {
         this.warnings.setTextFill(Constants.WARNINGS_COLOR);
         regexboxContainer.setBottom(this.warnings);
 
-        this.background.getChildren().add(regexboxContainer);
+        // The container that holds the input box.
+        BorderPane inputboxContainer = new BorderPane();
+        inputboxContainer.setCenter(this.inputBox);
+
+        // Prompt user. Use same style as the one used in regex container.
+        Label inputDescription = new Label(Constants.INPUT_BOX_DESCRIPTION);
+        BorderPane.setMargin(inputDescription, Constants.REGEX_BOX_DESCRIPTION_PADDING);
+        inputDescription.setFont(Constants.REGEX_BOX_DESCRIPTION_FONT);
+        inputDescription.setTextFill(Constants.REGEX_BOX_DESCRIPTION_COLOR);
+        inputboxContainer.setTop(inputDescription);
+        inputboxContainer.setPadding(Constants.REGEX_BOX_PADDING);
+
+        // Add components, create Scene.
+        this.background.getChildren().addAll(regexboxContainer, inputboxContainer);
         this.mainScene = new Scene(this.background, Constants.DEFAULT_WINDOW_WIDTH, Constants.DEFAULT_WINDOW_HEIGHT);
     }
 
@@ -75,6 +103,13 @@ public class MainGUI implements RegexFrontend {
      */
     private void regexUpdated() {
         this.backend.regexUpdated(this.regexBox.getText());
+    }
+
+    /**
+     * The user has modified the Input box, so act accordingly.
+     */
+    private void inputUpdated() {
+        this.backend.inputUpdated(this.inputBox.getText());
     }
 
     @Override

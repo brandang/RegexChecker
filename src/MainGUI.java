@@ -26,10 +26,8 @@ public class MainGUI implements RegexFrontend {
 
     /**
      * Create a new GUI that represents the program.
-     * @param backend The Backend that this GUI has to communicate with.
      */
-    public MainGUI(RegexBackend backend) {
-        this.backend = backend;
+    public MainGUI() {
         this.setupGUI();
     }
 
@@ -46,6 +44,10 @@ public class MainGUI implements RegexFrontend {
         this.regexBox = new TextField();
         this.regexBox.setStyle(Constants.REGEX_BOX_STYLE);
         this.regexBox.setFont(Constants.REGEX_BOX_FONT);
+        // Add listener for when user types something.
+        this.regexBox.textProperty().addListener((observable, oldValue, newValue) -> {
+            this.regexUpdated();
+        });
 
         // The container for the area that contains the regex box.
         BorderPane regexboxContainer = new BorderPane();
@@ -64,9 +66,15 @@ public class MainGUI implements RegexFrontend {
         this.warnings.setTextFill(Constants.WARNINGS_COLOR);
         regexboxContainer.setBottom(this.warnings);
 
-
         this.background.getChildren().add(regexboxContainer);
         this.mainScene = new Scene(this.background, Constants.DEFAULT_WINDOW_WIDTH, Constants.DEFAULT_WINDOW_HEIGHT);
+    }
+
+    /**
+     * The user has modified the Regex box, act accordingly.
+     */
+    private void regexUpdated() {
+        this.backend.regexUpdated(this.regexBox.getText());
     }
 
     @Override
@@ -80,7 +88,17 @@ public class MainGUI implements RegexFrontend {
     }
 
     @Override
+    public void updateWarnings(String newWarnings) {
+        this.warnings.setText(newWarnings);
+    }
+
+    @Override
     public Scene getScene() {
         return this.mainScene;
+    }
+
+    @Override
+    public void setBackend(RegexBackend backend) {
+        this.backend = backend;
     }
 }

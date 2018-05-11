@@ -15,4 +15,10 @@ public interface RegexBackend {
      * @param input The current value of the text area.
      */
     void inputUpdated(String input);
+
+    /**
+     * Set the Frontend that this Backend must communicate with.
+     * @param frontend The Frontend.
+     */
+    void setFrontend(RegexFrontend frontend);
 }

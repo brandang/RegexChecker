@@ -3,7 +3,7 @@ import javafx.scene.Scene;
 /**
  * Interface that represents the frontend of the program. Allows the backend to tell the frontend what to display.
  */
-public interface RegexFrontend {
+public interface RegexFrontend extends Frontend {
 
     /**
      * Update the regex text area.
@@ -28,11 +28,5 @@ public interface RegexFrontend {
      * @return The Scene object.
      */
     Scene getScene();
-
-    /**
-     * Set the Backend that this Frontend must communicate with.
-     * @param backend The Backend.
-     */
-    void setBackend(RegexBackend backend);
 
 }

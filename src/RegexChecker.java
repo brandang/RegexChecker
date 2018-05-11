@@ -1,3 +1,4 @@
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -6,8 +7,11 @@ public class RegexChecker implements RegexBackend {
     // The GUI/Frontend that we have to communicate with.
     private RegexFrontend frontend;
 
-    // The current regex pattern.
+    // The current regex pattern. If the current pattern is invalid, this will equal null.
     private Pattern pattern;
+
+    // The current String the user entered to test the regex on.
+    private String inputString;
 
     /**
      * Create a new RegexChecker.
@@ -26,12 +30,22 @@ public class RegexChecker implements RegexBackend {
             String message = Constants.START_WARNINGS_ERROR;
             message += e.getDescription();
             this.frontend.updateWarnings(message);
+            // Pattern is invalid.
+            this.pattern = null;
         }
     }
 
+
+
     @Override
     public void inputUpdated(String input) {
+        this.inputString = input;
+        // The current pattern is valid.
+        if (this.pattern != null) {
+            Matcher matcher = this.pattern.matcher(this.inputString);
+            matcher.group();
 
+        }
     }
 
     @Override

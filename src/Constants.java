@@ -46,4 +46,13 @@ public class Constants {
     // Color for the description.
     final public static Color REGEX_BOX_DESCRIPTION_COLOR = Color.WHITE;
 
+
+    // ** Warnings/errors Label for the regex text box **
+
+    // Color.
+    final public static Color WARNINGS_COLOR = Color.RED;
+
+    // Default thing to display.
+    final public static String DEFAULT_WARNINGS_DISPLAY = "";
+
 }

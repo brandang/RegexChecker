@@ -1,15 +1,16 @@
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 /**
  * Class that controls the main GUI.
  */
 public class MainGUI implements RegexFrontend {
+
+    // The Backend that this GUI has to communicate with.
+    private RegexBackend backend;
 
     // The scene.
     private Scene mainScene;
@@ -20,7 +21,15 @@ public class MainGUI implements RegexFrontend {
     // The text box for entering regex.
     private TextField regexBox;
 
-    public MainGUI() {
+    // Label that displays any error when user types in a regex.
+    private Label warnings;
+
+    /**
+     * Create a new GUI that represents the program.
+     * @param backend The Backend that this GUI has to communicate with.
+     */
+    public MainGUI(RegexBackend backend) {
+        this.backend = backend;
         this.setupGUI();
     }
 
@@ -41,12 +50,19 @@ public class MainGUI implements RegexFrontend {
         // The container for the area that contains the regex box.
         BorderPane regexboxContainer = new BorderPane();
         regexboxContainer.setCenter(this.regexBox);
+
+        // The description/user prompt.
         Label regexDescription = new Label(Constants.REGEX_BOX_DESCRIPTION);
         BorderPane.setMargin(regexDescription, Constants.REGEX_BOX_DESCRIPTION_PADDING);
         regexDescription.setFont(Constants.REGEX_BOX_DESCRIPTION_FONT);
         regexDescription.setTextFill(Constants.REGEX_BOX_DESCRIPTION_COLOR);
         regexboxContainer.setTop(regexDescription);
         regexboxContainer.setPadding(Constants.REGEX_BOX_PADDING);
+
+        // The Label that displays info/warnings for the regex box.
+        this.warnings = new Label(Constants.DEFAULT_WARNINGS_DISPLAY);
+        this.warnings.setTextFill(Constants.WARNINGS_COLOR);
+        regexboxContainer.setBottom(this.warnings);
 
 
         this.background.getChildren().add(regexboxContainer);
@@ -55,7 +71,7 @@ public class MainGUI implements RegexFrontend {
 
     @Override
     public void updateRegex(String newRegex) {
-
+        this.regexBox.setText(newRegex);
     }
 
     @Override

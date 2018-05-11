@@ -55,4 +55,7 @@ public class Constants {
     // Default thing to display.
     final public static String DEFAULT_WARNINGS_DISPLAY = "";
 
+    // Starting of the message when there is an error.
+    final public static String START_WARNINGS_ERROR = "Error compiling regex: ";
+
 }

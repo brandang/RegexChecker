@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 
 /**
  * A MatchedString is a String that has been matched by a regex pattern. It consists of SubSequences that are all either
- * matched or unmatched.
+ * matched or unmatched. Supplies an Iterator that can iterate through all of it's SubSequences.
  */
 public class MatchedString implements Iterable<SubSequence> {
 
@@ -55,5 +55,9 @@ public class MatchedString implements Iterable<SubSequence> {
             }
             return next;
         }
+    }
+
+    public int getSize() {
+        return this.subSequences.size();
     }
 }

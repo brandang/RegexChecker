@@ -64,4 +64,19 @@ public class Constants {
     // Starting of the message when there is an error.
     final public static String START_WARNINGS_ERROR = "Error compiling regex: ";
 
+
+    // ** Description for the Display box **
+
+    // Text to display.
+    final public static String DISPLAY_DESCRIPTION = "Matches: ";
+
+    // Colour.
+    final public static Color DISPLAY_DESCRIPTION_COLOR = Color.WHITE;
+
+
+    // ** Display to show matches on the String from the regex **
+
+    // The style for the display.
+    final public static String DISPLAY_STYLE = "-fx-background-color: #ffffff; -fx-padding: 5; " +
+            "-fx-background-radius: 5 5 5 5;";
 }

@@ -3,6 +3,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 /**
  * Class that controls the main GUI.
@@ -26,6 +28,9 @@ public class MainGUI implements RegexFrontend {
 
     // Label that displays any error when user types in a regex.
     private Label warnings;
+
+    // The text display box that shows which parts of the string the user entered are matched by the regex.
+    private TextFlow display;
 
     /**
      * Create a new GUI that represents the program.
@@ -91,8 +96,27 @@ public class MainGUI implements RegexFrontend {
         inputboxContainer.setTop(inputDescription);
         inputboxContainer.setPadding(Constants.REGEX_BOX_PADDING);
 
+        // The display box that shows the matches from the given input.
+        this.display = new TextFlow();
+
+        // The description for the display box.
+        Label displayDescription = new Label(Constants.DISPLAY_DESCRIPTION);
+        BorderPane.setMargin(displayDescription, Constants.REGEX_BOX_DESCRIPTION_PADDING);
+        displayDescription.setTextFill(Constants.DISPLAY_DESCRIPTION_COLOR);
+
+        // The container for the area that contains the display box.
+        BorderPane displayContainer = new BorderPane();
+        displayContainer.setTop(displayDescription);
+        displayContainer.setCenter(this.display);
+        displayContainer.setPadding(Constants.REGEX_BOX_PADDING);
+
+        // Test
+        Text text = new Text("Hello World");
+        this.display.getChildren().add(text);
+        this.display.setStyle(Constants.DISPLAY_STYLE);
+
         // Add components, create Scene.
-        this.background.getChildren().addAll(regexboxContainer, inputboxContainer);
+        this.background.getChildren().addAll(regexboxContainer, inputboxContainer, displayContainer);
         this.mainScene = new Scene(this.background, Constants.DEFAULT_WINDOW_WIDTH, Constants.DEFAULT_WINDOW_HEIGHT);
     }
 

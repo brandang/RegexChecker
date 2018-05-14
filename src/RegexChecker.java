@@ -77,8 +77,10 @@ public class RegexChecker implements RegexBackend {
         // The current pattern is valid.
         if (this.pattern != null) {
             Matcher matcher = this.pattern.matcher(this.inputString);
-            this.createMatchedString(matcher);
+            MatchedString matchedString = this.createMatchedString(matcher);
         }
+        // The pattern is not valid, so create a MatchedString that is empty.
+        MatchedString matchedString = new MatchedString();
     }
 
     @Override

@@ -77,6 +77,6 @@ public class Constants {
     // ** Display to show matches on the String from the regex **
 
     // The style for the display.
-    final public static String DISPLAY_STYLE = "-fx-background-color: #ffffff; -fx-padding: 5; " +
-            "-fx-background-radius: 5 5 5 5;";
+    final public static String DISPLAY_STYLE = "-fx-background-color: #FFFEFF; -fx-padding: 5; " +
+            "-fx-background-radius: 3 3 3 3;";
 }

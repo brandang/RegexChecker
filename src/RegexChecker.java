@@ -66,8 +66,6 @@ public class RegexChecker implements RegexBackend {
             SubSequence subSequence = new SubSequence(unmatched, false);
             string.addSubSequence(subSequence);
         }
-        // Test
-        System.out.println(string.getSize());
         return string;
     }
 
@@ -78,9 +76,12 @@ public class RegexChecker implements RegexBackend {
         if (this.pattern != null) {
             Matcher matcher = this.pattern.matcher(this.inputString);
             MatchedString matchedString = this.createMatchedString(matcher);
+            this.frontend.updateDisplay(matchedString);
+        } else {
+            // The pattern is not valid, so create a MatchedString that is empty.
+            MatchedString matchedString = new MatchedString();
+            this.frontend.updateDisplay(matchedString);
         }
-        // The pattern is not valid, so create a MatchedString that is empty.
-        MatchedString matchedString = new MatchedString();
     }
 
     @Override

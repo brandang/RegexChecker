@@ -60,4 +60,12 @@ public class MatchedString implements Iterable<SubSequence> {
     public int getSize() {
         return this.subSequences.size();
     }
+
+    public String toString() {
+        String representation = "";
+        for (SubSequence subSequence : this) {
+            representation += subSequence.getValue() + ":";
+        }
+        return representation;
+    }
 }

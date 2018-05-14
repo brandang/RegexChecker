@@ -18,6 +18,12 @@ public interface RegexFrontend extends Frontend {
     void updateInput(String newInput);
 
     /**
+     * Update the display using the given MatchedString to show which SubSequences are matched by the regex.
+     * @param matchedString The MatchedString.
+     */
+    void updateDisplay(MatchedString matchedString);
+
+    /**
      * Update the warnings to display.
      * @param newWarnings The new warnings to display.
      */

@@ -3,6 +3,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
@@ -110,8 +111,7 @@ public class MainGUI implements RegexFrontend {
         displayContainer.setCenter(this.display);
         displayContainer.setPadding(Constants.REGEX_BOX_PADDING);
 
-        // Test
-        Text text = new Text("Hello World");
+        Text text = new Text("");
         this.display.getChildren().add(text);
         this.display.setStyle(Constants.DISPLAY_STYLE);
 
@@ -142,6 +142,24 @@ public class MainGUI implements RegexFrontend {
     @Override
     public void updateInput(String newInput) {
 
+    }
+
+    @Override
+    public void updateDisplay(MatchedString matchedString) {
+        // Clear the previous elements from the display.
+        this.display.getChildren().clear();
+
+        for (SubSequence sequence : matchedString) {
+            Text text = new Text(sequence.getValue());
+            // The sequences matches, highlight it.
+            if (sequence.isMatch()) {
+                text.setFill(Color.RED);
+            }
+            else {
+                text.setFill(Color.BLACK);
+            }
+            this.display.getChildren().add(text);
+        }
     }
 
     @Override

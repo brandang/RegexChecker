@@ -68,7 +68,7 @@ public class Constants {
     // ** Description for the Display box **
 
     // Text to display.
-    final public static String DISPLAY_DESCRIPTION = "Matches: ";
+    final public static String DISPLAY_DESCRIPTION = " matches";
 
     // Colour.
     final public static Color DISPLAY_DESCRIPTION_COLOR = Color.WHITE;

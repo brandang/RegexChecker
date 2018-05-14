@@ -57,10 +57,32 @@ public class MatchedString implements Iterable<SubSequence> {
         }
     }
 
+    /**
+     * Returns the number of SubSequences in this MatchedString.
+     * @return The number of SubSequences.
+     */
     public int getSize() {
         return this.subSequences.size();
     }
 
+    /**
+     * Returns the number of matches in this MatchedString.
+     * @return THe number of matches.
+     */
+    public int getNumMatches() {
+        int matches = 0;
+        for (SubSequence subSequence : this) {
+            if (subSequence.isMatch()) {
+                matches ++;
+            }
+        }
+        return matches;
+    }
+
+    /**
+     * Returns String representation.
+     * @return String representation.
+     */
     public String toString() {
         String representation = "";
         for (SubSequence subSequence : this) {

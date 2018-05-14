@@ -33,6 +33,9 @@ public class MainGUI implements RegexFrontend {
     // The text display box that shows which parts of the string the user entered are matched by the regex.
     private TextFlow display;
 
+    // The Label that displays information relating to the matches.
+    private Label infoLabel;
+
     /**
      * Create a new GUI that represents the program.
      */
@@ -100,18 +103,18 @@ public class MainGUI implements RegexFrontend {
         // The display box that shows the matches from the given input.
         this.display = new TextFlow();
 
-        // The description for the display box.
-        Label displayDescription = new Label(Constants.DISPLAY_DESCRIPTION);
-        BorderPane.setMargin(displayDescription, Constants.REGEX_BOX_DESCRIPTION_PADDING);
-        displayDescription.setTextFill(Constants.DISPLAY_DESCRIPTION_COLOR);
+        // The description for the display box. Initially show that there are no matches.
+        this.infoLabel = new Label(0 + Constants.DISPLAY_DESCRIPTION);
+        BorderPane.setMargin(this.infoLabel, Constants.REGEX_BOX_DESCRIPTION_PADDING);
+        this.infoLabel.setTextFill(Constants.DISPLAY_DESCRIPTION_COLOR);
 
         // The container for the area that contains the display box.
         BorderPane displayContainer = new BorderPane();
-        displayContainer.setTop(displayDescription);
+        displayContainer.setTop(this.infoLabel);
         displayContainer.setCenter(this.display);
         displayContainer.setPadding(Constants.REGEX_BOX_PADDING);
 
-        Text text = new Text("");
+        Text text = new Text();
         this.display.getChildren().add(text);
         this.display.setStyle(Constants.DISPLAY_STYLE);
 
@@ -160,6 +163,15 @@ public class MainGUI implements RegexFrontend {
             }
             this.display.getChildren().add(text);
         }
+
+        // If there is nothing to display, just display an empty String so that the TextFlow maintains it's shape.
+        if (matchedString.getSize() == 0) {
+            Text emptyText = new Text();
+            this.display.getChildren().add(emptyText);
+        }
+
+        // Update the info description.
+        this.infoLabel.setText(matchedString.getNumMatches() + Constants.DISPLAY_DESCRIPTION);
     }
 
     @Override

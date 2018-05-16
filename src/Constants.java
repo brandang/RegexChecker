@@ -79,4 +79,10 @@ public class Constants {
     // The style for the display.
     final public static String DISPLAY_STYLE = "-fx-background-color: #FFFEFF; -fx-padding: 5; " +
             "-fx-background-radius: 3 3 3 3;";
+
+    // Color for text representing match.
+    final public static Color DISPLAY_MATCH_COLOR = Color.RED;
+
+    // Color for text representing unmatches.
+    final public static Color DISPLAY_UNMATCHED_COLOR = Color.BLACK;
 }

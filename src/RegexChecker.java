@@ -50,20 +50,26 @@ public class RegexChecker implements RegexBackend {
         // Loop through each match, get all the sub sequences that match and the ones that do not.
         while (matcher.find()) {
             end = matcher.start();
+
+            // Get the unmatched String before the match, if any.
             String unmatched = this.inputString.substring(start, end);
             // Ignore empty Strings, we only want matches that are a part of the String the user entered.
             if (!unmatched.equals("")) {
                 SubSequence subSequence = new SubSequence(unmatched, false);
                 string.addSubSequence(subSequence);
             }
+            // Indices of next unmatched String. Assume end index is the last index.
             start = matcher.end();
             end = this.inputString.length();
+
+            // Get the matched String.
             String matched = matcher.group();
             if (!matched.equals("")) {
                 SubSequence subSequence = new SubSequence(matched, true);
                 string.addSubSequence(subSequence);
             }
         }
+        // Get the unmatched String, if any, after the last match.
         String unmatched = this.inputString.substring(start, end);
         if (!unmatched.equals("")) {
             SubSequence subSequence = new SubSequence(unmatched, false);

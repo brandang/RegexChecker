@@ -1,3 +1,5 @@
+import com.sun.corba.se.impl.orbutil.closure.Constant;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -156,10 +158,10 @@ public class MainGUI implements RegexFrontend {
             Text text = new Text(sequence.getValue());
             // The sequences matches, highlight it.
             if (sequence.isMatch()) {
-                text.setFill(Color.RED);
+                text.setFill(Constants.DISPLAY_MATCH_COLOR);
             }
             else {
-                text.setFill(Color.BLACK);
+                text.setFill(Constants.DISPLAY_UNMATCHED_COLOR);
             }
             this.display.getChildren().add(text);
         }

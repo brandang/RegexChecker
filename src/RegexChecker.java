@@ -33,6 +33,8 @@ public class RegexChecker implements RegexBackend {
             // Pattern is invalid.
             this.pattern = null;
         }
+        // Update the display accordingly.
+        this.updateDisplay(this.inputString);
     }
 
     /**
@@ -54,12 +56,13 @@ public class RegexChecker implements RegexBackend {
                 SubSequence subSequence = new SubSequence(unmatched, false);
                 string.addSubSequence(subSequence);
             }
+            start = matcher.end();
+            end = this.inputString.length();
             String matched = matcher.group();
             if (!matched.equals("")) {
                 SubSequence subSequence = new SubSequence(matched, true);
                 string.addSubSequence(subSequence);
             }
-            start = matcher.end();
         }
         String unmatched = this.inputString.substring(start, end);
         if (!unmatched.equals("")) {
@@ -71,15 +74,26 @@ public class RegexChecker implements RegexBackend {
 
     @Override
     public void inputUpdated(String input) {
+        this.updateDisplay(input);
+    }
+
+    /**
+     * Updates the display using the given input and regex.
+     * @param input The input.
+     */
+    private void updateDisplay(String input) {
         this.inputString = input;
-        // The current pattern is valid.
-        if (this.pattern != null) {
+        // The current pattern is valid, and so is the input.
+        if (this.pattern != null && this.inputString != null) {
             Matcher matcher = this.pattern.matcher(this.inputString);
             MatchedString matchedString = this.createMatchedString(matcher);
             this.frontend.updateDisplay(matchedString);
         } else {
-            // The pattern is not valid, so create a MatchedString that is empty.
+            // The pattern or the input is not valid.
+            // Create SubSequence that includes the entire input, unmatched.
+            SubSequence subSequence = new SubSequence(input, false);
             MatchedString matchedString = new MatchedString();
+            matchedString.addSubSequence(subSequence);
             this.frontend.updateDisplay(matchedString);
         }
     }

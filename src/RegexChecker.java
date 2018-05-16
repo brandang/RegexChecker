@@ -2,6 +2,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+/**
+ * Class that controls the back-end of the program. Tells the MainGUI what to display.
+ */
 public class RegexChecker implements RegexBackend {
 
     // The GUI/Frontend that we have to communicate with.
@@ -12,12 +15,6 @@ public class RegexChecker implements RegexBackend {
 
     // The current String the user entered to test the regex on.
     private String inputString;
-
-    /**
-     * Create a new RegexChecker.
-     */
-    public RegexChecker() {
-    }
 
     @Override
     public void regexUpdated(String regex) {

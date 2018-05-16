@@ -2,6 +2,9 @@ import javafx.geometry.Insets;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+/**
+ * Class that stores the Constant values for the program.
+ */
 public class Constants {
 
     // ** Window **

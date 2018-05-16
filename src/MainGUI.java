@@ -1,11 +1,8 @@
-import com.sun.corba.se.impl.orbutil.closure.Constant;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 

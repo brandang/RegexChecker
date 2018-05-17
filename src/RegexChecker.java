@@ -1,3 +1,5 @@
+import javafx.application.Platform;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -91,7 +93,8 @@ public class RegexChecker implements RegexBackend {
 
     @Override
     public void closeButtonPressed() {
-
+        // Close the program.
+        Platform.exit();
     }
 
     /**

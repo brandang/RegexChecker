@@ -137,6 +137,7 @@ public class MainGUI implements RegexFrontend {
         this.closeButton.setPrefWidth(Constants.BUTTON_WIDTH);
         this.closeButton.setOnAction(event -> this.backend.closeButtonPressed());
 
+        // Add buttons to their container.
         HBox buttonContainer = new HBox();
         buttonContainer.setPadding(Constants.TEXTBOX_PADDING);
         buttonContainer.getChildren().add(this.clearButton);

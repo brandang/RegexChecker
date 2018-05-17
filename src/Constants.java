@@ -23,31 +23,34 @@ public class Constants {
     final public static String BACKGROUND_STYLE = "-fx-background-color: #464646";
 
 
-    // ** The text box for entering in the Regex **
+    // ** The text boxes for entering in information **
 
-    // The style of the text box for entering the regex.
-    final public static String REGEX_BOX_STYLE = "-fx-padding: 5;";
+    // The style of the text boxes.
+    final public static String TEXTBOX_STYLE = "-fx-padding: 5;";
 
-    // Padding for the regex text box.
-    final public static Insets REGEX_BOX_PADDING = new Insets(20,20, 20, 20);
+    // Padding for the text boxes.
+    final public static Insets TEXTBOX_PADDING = new Insets(20,20, 20, 20);
 
-    // Font for the regex text box.
-    final public static Font REGEX_BOX_FONT = new Font(12);
+    // Font for the text boxes.
+    final public static Font TEXTBOX_FONT = new Font(12);
 
 
-    // ** Description for the regex text box **
+    // ** Description for the text boxes **
 
     // Font for the description.
-    final public static Font REGEX_BOX_DESCRIPTION_FONT = new Font(12);
+    final public static Font DESCRIPTION_FONT = new Font(12);
+
+    // Padding for the description.
+    final public static Insets DESCRIPTION_PADDING = new Insets(0,0,10,0);
+
+    // Color for the description.
+    final public static Color DESCRIPTION_COLOR = Color.WHITE;
+
+
+    // ** Description for the regex box **
 
     // Description for the regex box.
     final public static String REGEX_BOX_DESCRIPTION = "Enter Regex here: ";
-
-    // Padding for the description.
-    final public static Insets REGEX_BOX_DESCRIPTION_PADDING = new Insets(0,0,10,0);
-
-    // Color for the description.
-    final public static Color REGEX_BOX_DESCRIPTION_COLOR = Color.WHITE;
 
 
     // ** Description for the Input box **

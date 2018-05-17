@@ -1,4 +1,5 @@
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -35,6 +36,12 @@ public class MainGUI implements RegexFrontend {
     // The Label that displays information relating to the matches.
     private Label infoLabel;
 
+    // The button that allows the user to clear all text fields.
+    private Button clearButton;
+
+    // The button that closes window and exits the program.
+    private Button closeButton;
+
     /**
      * Create a new GUI that represents the program.
      */
@@ -53,18 +60,17 @@ public class MainGUI implements RegexFrontend {
 
         // The regex box for user input to get the regex pattern.
         this.regexBox = new TextField();
-        this.regexBox.setStyle(Constants.REGEX_BOX_STYLE);
-        this.regexBox.setFont(Constants.REGEX_BOX_FONT);
+        this.regexBox.setStyle(Constants.TEXTBOX_STYLE);
+        this.regexBox.setFont(Constants.TEXTBOX_FONT);
         // Add listener for when user types something.
         this.regexBox.textProperty().addListener((observable, oldValue, newValue) -> {
             this.regexUpdated();
         });
 
         // The input box so that user can enter String to test regex on.
-        // Use same style as regex box.
         this.inputBox = new TextField();
-        this.inputBox.setStyle(Constants.REGEX_BOX_STYLE);
-        this.inputBox.setFont(Constants.REGEX_BOX_FONT);
+        this.inputBox.setStyle(Constants.TEXTBOX_STYLE);
+        this.inputBox.setFont(Constants.TEXTBOX_FONT);
         // Add listener for when user types something.
         this.inputBox.textProperty().addListener((observable, oldValue, newValue) -> {
             this.inputUpdated();
@@ -76,11 +82,11 @@ public class MainGUI implements RegexFrontend {
 
         // The description/user prompt.
         Label regexDescription = new Label(Constants.REGEX_BOX_DESCRIPTION);
-        BorderPane.setMargin(regexDescription, Constants.REGEX_BOX_DESCRIPTION_PADDING);
-        regexDescription.setFont(Constants.REGEX_BOX_DESCRIPTION_FONT);
-        regexDescription.setTextFill(Constants.REGEX_BOX_DESCRIPTION_COLOR);
+        BorderPane.setMargin(regexDescription, Constants.DESCRIPTION_PADDING);
+        regexDescription.setFont(Constants.DESCRIPTION_FONT);
+        regexDescription.setTextFill(Constants.DESCRIPTION_COLOR);
         regexboxContainer.setTop(regexDescription);
-        regexboxContainer.setPadding(Constants.REGEX_BOX_PADDING);
+        regexboxContainer.setPadding(Constants.TEXTBOX_PADDING);
 
         // The Label that displays info/warnings for the regex box.
         this.warnings = new Label(Constants.DEFAULT_WARNINGS_DISPLAY);
@@ -91,31 +97,33 @@ public class MainGUI implements RegexFrontend {
         BorderPane inputboxContainer = new BorderPane();
         inputboxContainer.setCenter(this.inputBox);
 
-        // Prompt user. Use same style as the one used in regex container.
+        // Prompt user to enter input in input box.
         Label inputDescription = new Label(Constants.INPUT_BOX_DESCRIPTION);
-        BorderPane.setMargin(inputDescription, Constants.REGEX_BOX_DESCRIPTION_PADDING);
-        inputDescription.setFont(Constants.REGEX_BOX_DESCRIPTION_FONT);
-        inputDescription.setTextFill(Constants.REGEX_BOX_DESCRIPTION_COLOR);
+        BorderPane.setMargin(inputDescription, Constants.DESCRIPTION_PADDING);
+        inputDescription.setFont(Constants.DESCRIPTION_FONT);
+        inputDescription.setTextFill(Constants.DESCRIPTION_COLOR);
         inputboxContainer.setTop(inputDescription);
-        inputboxContainer.setPadding(Constants.REGEX_BOX_PADDING);
+        inputboxContainer.setPadding(Constants.TEXTBOX_PADDING);
 
         // The display box that shows the matches from the given input.
         this.display = new TextFlow();
 
         // The description for the display box. Initially show that there are no matches.
         this.infoLabel = new Label(0 + Constants.DISPLAY_DESCRIPTION);
-        BorderPane.setMargin(this.infoLabel, Constants.REGEX_BOX_DESCRIPTION_PADDING);
+        BorderPane.setMargin(this.infoLabel, Constants.DESCRIPTION_PADDING);
         this.infoLabel.setTextFill(Constants.DISPLAY_DESCRIPTION_COLOR);
 
         // The container for the area that contains the display box.
         BorderPane displayContainer = new BorderPane();
         displayContainer.setTop(this.infoLabel);
         displayContainer.setCenter(this.display);
-        displayContainer.setPadding(Constants.REGEX_BOX_PADDING);
-
+        displayContainer.setPadding(Constants.TEXTBOX_PADDING);
+        // Initial text that the display shows.
         Text text = new Text();
         this.display.getChildren().add(text);
         this.display.setStyle(Constants.DISPLAY_STYLE);
+
+        BorderPane buttonContainer = new BorderPane();
 
         // Add components, create Scene.
         this.background.getChildren().addAll(regexboxContainer, inputboxContainer, displayContainer);

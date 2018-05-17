@@ -80,6 +80,20 @@ public class RegexChecker implements RegexBackend {
         this.updateDisplay(input);
     }
 
+    @Override
+    public void clearButtonPressed() {
+        // Clear all of the text fields.
+        this.inputUpdated("");
+        this.regexUpdated("");
+        this.frontend.updateRegex("");
+        this.frontend.updateInput("");
+    }
+
+    @Override
+    public void closeButtonPressed() {
+
+    }
+
     /**
      * Updates the display using the given input and regex.
      * @param input The input.

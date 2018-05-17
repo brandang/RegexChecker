@@ -16,4 +16,14 @@ public interface RegexBackend extends Backend {
      */
     void inputUpdated(String input);
 
+    /**
+     * User has clicked on the clear button.
+     */
+    void clearButtonPressed();
+
+    /**
+     * User has clicked on the close button.
+     */
+    void closeButtonPressed();
+
 }

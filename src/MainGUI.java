@@ -1,8 +1,12 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -123,10 +127,25 @@ public class MainGUI implements RegexFrontend {
         this.display.getChildren().add(text);
         this.display.setStyle(Constants.DISPLAY_STYLE);
 
-        BorderPane buttonContainer = new BorderPane();
+        // Clear button.
+        this.clearButton = new Button(Constants.CLEAR_BUTTON_TEXT);
+        this.clearButton.setPrefWidth(Constants.BUTTON_WIDTH);
+        this.clearButton.setOnAction(event -> this.backend.clearButtonPressed());
+
+        // Close button.
+        this.closeButton = new Button(Constants.CLOSE_BUTTON_TEXT);
+        this.closeButton.setPrefWidth(Constants.BUTTON_WIDTH);
+        this.closeButton.setOnAction(event -> this.backend.closeButtonPressed());
+
+        HBox buttonContainer = new HBox();
+        buttonContainer.setPadding(Constants.TEXTBOX_PADDING);
+        buttonContainer.getChildren().add(this.clearButton);
+        buttonContainer.getChildren().add(this.closeButton);
+        buttonContainer.setAlignment(Pos.BASELINE_RIGHT);
+        buttonContainer.setSpacing(Constants.BUTTON_SPACING);
 
         // Add components, create Scene.
-        this.background.getChildren().addAll(regexboxContainer, inputboxContainer, displayContainer);
+        this.background.getChildren().addAll(regexboxContainer, inputboxContainer, displayContainer, buttonContainer);
         this.mainScene = new Scene(this.background, Constants.DEFAULT_WINDOW_WIDTH, Constants.DEFAULT_WINDOW_HEIGHT);
     }
 
@@ -151,7 +170,7 @@ public class MainGUI implements RegexFrontend {
 
     @Override
     public void updateInput(String newInput) {
-
+        this.inputBox.setText(newInput);
     }
 
     @Override

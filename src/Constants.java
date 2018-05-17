@@ -91,4 +91,25 @@ public class Constants {
 
     // Color for text representing unmatches.
     final public static Color DISPLAY_UNMATCHED_COLOR = Color.BLACK;
+
+
+    // ** Buttons **
+
+    // The widths.
+    final public static int BUTTON_WIDTH = 75;
+
+    // Space between buttons.
+    final public static int BUTTON_SPACING = 15;
+
+
+    // ** Button to clear all text fields with **
+
+    // The text.
+    final public static String CLEAR_BUTTON_TEXT = "Clear";
+
+
+    // ** Button to close window with **
+
+    // Text.
+    final public static String CLOSE_BUTTON_TEXT = "Close";
 }

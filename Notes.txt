@@ -1,8 +1,0 @@
-RegexChecker: The backend
-
-MainGUI: The Frontend, might use other GUI classes as dependencies
-
-Launcher: Need to convert this to a JavaFx class, extend Application
-
-ColourTextBox: TextBox that displays portions of text in different colour if toggled.
-
